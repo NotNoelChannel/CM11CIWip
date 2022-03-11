@@ -44,10 +44,10 @@ jobs:
         export PATH="$HOME/.jdk_7/java-se-7u75-ri/bin:$PATH"
         export JAVA_HOME="$HOME/.jdk_7/java-se-7u75-ri"
         cd ~/TWRP
-        git clone https://github.com/CyanogenMod/android_device_asus_grouper -b cm-11.0 device/asus/grouper
-        git clone https://github.com/CyanogenMod/android_kernel_asus_grouper -b cm-11.0 kernel/asus/grouper
+        git clone https://github.com/NotNoelChannel/android_device_samsung_j1pop3g -b cm-11.0 device/samsung/j1pop3g
+        git clone https://github.com/J110H-Android/android_kernel_samsung_j1pop3g -b cm-11.0 kernel/samsung/j1pop3g
         source build/envsetup.sh
-        lunch aosp_grouper-userdebug
+        lunch cm_j1pop3g-eng
         make otapackage
         export PATH=$OLDPATH
         export JAVA_HOME=$OLDJAVAHOME
