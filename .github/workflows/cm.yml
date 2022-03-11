@@ -47,7 +47,8 @@ jobs:
         git clone https://github.com/CyanogenMod/android_device_asus_grouper -b cm-11.0 device/asus/grouper
         git clone https://github.com/CyanogenMod/android_kernel_asus_grouper -b cm-11.0 kernel/asus/grouper
         source build/envsetup.sh
-        brunch grouper
+        lunch aosp_grouper-userdebug
+        make otapackage
         export PATH=$OLDPATH
         export JAVA_HOME=$OLDJAVAHOME
     - name: Uploading CyanogenMod builds
