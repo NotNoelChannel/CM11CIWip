@@ -48,8 +48,8 @@ jobs:
         git clone https://github.com/CyanogenMod-ARMv6/android_device_samsung_bcm21553-common -b ics device/samsung/bcm21553-common
         git clone https://github.com/CyanogenMod-ARMv6/android_device_samsung_totoro -b ics device/samsung/totoro
         source build/envsetup.sh
+        lunch cm_totoro-userdebug
         brunch cm_totoro-userdebug
-        make otapackage
         export PATH=$OLDPATH
         export JAVA_HOME=$OLDJAVAHOME
     - name: Uploading CyanogenMod builds
