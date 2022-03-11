@@ -46,7 +46,6 @@ jobs:
         cd ~/TWRP
         git clone https://github.com/CyanogenMod-ARMv6/android_kernel_samsung_bcm21553-common -b ics kernel/samsung/totoro
         git clone https://github.com/CyanogenMod-ARMv6/android_device_samsung_bcm21553-common -b ics device/samsung/bcm21553-common
-        git clone https://github.com/CyanogenMod-ARMv6/android_vendor_samsung -b ics vendor/samsung
         git clone https://github.com/CyanogenMod-ARMv6/android_device_samsung_totoro -b ics device/samsung/totoro
         source build/envsetup.sh
         brunch cm_totoro-userdebug
@@ -57,4 +56,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: twrp
-        path: /home/runner/TWRP/out/target/product/grouper/cm-11-20220311*
+        path: /home/runner/TWRP/out/target/product/totoro/*.zip
