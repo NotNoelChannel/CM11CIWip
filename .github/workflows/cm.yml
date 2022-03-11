@@ -35,7 +35,7 @@ jobs:
         cd ~/TWRP
         mkdir ~/.bin
         curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
-        python3 ~/.bin/repo init --depth=1 -u https://github.com/androidarmv6/android.git -b cm-11.0
+        python3 ~/.bin/repo init --depth=1 -u https://github.com/CyanogenMod/android -b cm-11.0
         python3 ~/.bin/repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
     - name: Building CM11
       run: |
@@ -45,11 +45,12 @@ jobs:
         export JAVA_HOME="$HOME/.jdk_7/java-se-7u75-ri"
         cd ~/TWRP
         source build/envsetup.sh
-        brunch totoro
+        breakfast grouper
+        brunch grouper
         export PATH=$OLDPATH
         export JAVA_HOME=$OLDJAVAHOME
     - name: Uploading CyanogenMod builds
       uses: actions/upload-artifact@v2
       with:
         name: twrp
-        path: /home/runner/TWRP/out/target/product/totoro/cm-11-RC14-totoro.*
+        path: /home/runner/TWRP/out/target/product/grouper/cm-11-20220311*
