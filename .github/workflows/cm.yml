@@ -36,8 +36,6 @@ jobs:
         mkdir ~/.bin
         curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
         python3 ~/.bin/repo init --depth=1 -u https://github.com/CyanogenMod/android -b cm-11.0
-        python3 ~/.bin/repo init --depth=1 -u https://github.com/CyanogenMod/android_device_asus_grouper -b cm-11.0
-        python3 ~/.bin/repo init --depth=1 -u https://github.com/CyanogenMod/android_kernel_asus_grouper -b cm-11.0
         python3 ~/.bin/repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
     - name: Building CM11
       run: |
@@ -46,6 +44,8 @@ jobs:
         export PATH="$HOME/.jdk_7/java-se-7u75-ri/bin:$PATH"
         export JAVA_HOME="$HOME/.jdk_7/java-se-7u75-ri"
         cd ~/TWRP
+        git clone https://github.com/CyanogenMod/android_device_asus_grouper -b cm-11.0 device/asus/grouper
+        git clone https://github.com/CyanogenMod/android_kernel_asus_grouper -b cm-11.0 kernel/asus/grouper
         source build/envsetup.sh
         brunch grouper
         export PATH=$OLDPATH
