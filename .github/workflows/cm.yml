@@ -1,4 +1,4 @@
-name: TWRP CI
+name: Cyanogen CI
 
 on:
   workflow_dispatch:
@@ -29,31 +29,30 @@ jobs:
         axel -q -n $(nproc --all) https://download.java.net/openjdk/jdk7u75/ri/openjdk-7u75-b13-linux-x64-18_dec_2014.tar.gz
         tar -xzf openjdk-7u75-b13-linux-x64-18_dec_2014.tar.gz
         sudo ln -f -s /usr/bin/python2.7 /usr/bin/python
-    - name: Syncing CM11 sources
+    - name: Syncing CM14.1 sources
       run: |
         mkdir ~/TWRP
         cd ~/TWRP
         mkdir ~/.bin
         curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
-        python3 ~/.bin/repo init --depth=1 -u git://github.com/CyanogenMod-ARMv6/android.git -b ics
+        python3 ~/.bin/repo init --depth=1 -u https://github.com/LineageOS/android.git -b cm-14.1
         python3 ~/.bin/repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
-    - name: Building CM11
+    - name: Building CM14.1
       run: |
         OLDPATH=$PATH
         OLDJAVAHOME=$JAVA_HOME
         export PATH="$HOME/.jdk_7/java-se-7u75-ri/bin:$PATH"
         export JAVA_HOME="$HOME/.jdk_7/java-se-7u75-ri"
         cd ~/TWRP
-        git clone https://github.com/CyanogenMod-ARMv6/android_kernel_samsung_bcm21553-common -b ics kernel/samsung/totoro
-        git clone https://github.com/CyanogenMod-ARMv6/android_device_samsung_bcm21553-common -b ics device/samsung/bcm21553-common
-        git clone https://github.com/CyanogenMod-ARMv6/android_device_samsung_totoro -b ics device/samsung/totoro
+        python3 ~/.bin/repo init --depth=1 -u https://github.com/NotNoelChannel/local_manifest -b main
+        python3 ~/.bin/repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
         source build/envsetup.sh
-        lunch cm_totoro-userdebug
-        brunch cm_totoro-userdebug
+        lunch lineage_grandprimevelte-eng
+        brunch lineage_grandprimevelte-eng
         export PATH=$OLDPATH
         export JAVA_HOME=$OLDJAVAHOME
     - name: Uploading CyanogenMod builds
       uses: actions/upload-artifact@v2
       with:
         name: twrp
-        path: /home/runner/TWRP/out/target/product/totoro/*.zip
+        path: /home/runner/TWRP/out/target/product/grandprimevelte/*.zip
