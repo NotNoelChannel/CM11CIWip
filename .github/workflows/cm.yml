@@ -44,8 +44,25 @@ jobs:
         export PATH="$HOME/.jdk_7/java-se-7u75-ri/bin:$PATH"
         export JAVA_HOME="$HOME/.jdk_7/java-se-7u75-ri"
         cd ~/TWRP
-        python3 ~/.bin/repo init --depth=1 -u https://github.com/NotNoelChannel/local_manifest -b main
-        python3 ~/.bin/repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
+        git clone https://github.com/Nemirtingas/android_device_marvell_sepolicy -b lineage-14.1 device/marvell/sepolicy
+        git clone https://github.com/Nemirtingas/android_device_samsung_mrvl-common -b lineage-14.1 device/samsung/mrvl-common
+        git clone https://github.com/Nemirtingas/android_device_samsung_pxa1908-common -b lineage-14.1 device/samsung/pxa1908-common
+        git clone https://github.com/Nemirtingas/android_hardware_marvell_fm -b lineage-14.1 hardware/marvell/fm
+        git clone https://github.com/Nemirtingas/android_hardware_marvell_libmvmem -b lineage-14.1 hardware/marvell/libmvmem
+        git clone https://github.com/Nemirtingas/android_hardware_marvell_vendor-libs -b lineage-14.1 hardware/marvell/vendor_libs
+        git clone https://github.com/Nemirtingas/android_hardware_marvell_MarvellWirelessDaemon -b lineage-14.1 hardware/marvell/MarvellWirelessDaemon
+        git clone https://github.com/Nemirtingas/android_hardware_marvell_display -b lineage-14.1 hardware/marvell/display
+        git clone https://github.com/Nemirtingas/android_hardware_marvell_pxa1908 -b lineage-14.1 hardware/marvell/pxa1908
+        git clone https://github.com/Nemirtingas/android_hardware_marvell_libMarvellWireless -b lineage-14.1 hardware/marvell/libMarvellWireless
+        git clone https://github.com/Nemirtingas/android_hardware_marvell_audio -b lineage-14.1 hardware/marvell/audio
+        git clone https://github.com/Nemirtingas/android_hardware_marvell_bootimage -b lineage-14.1 hardware/marvell/bootimage
+        git clone https://github.com/Nemirtingas/android_hardware_marvell_wlan -b lineage-14.1 hardware/marvell/wlan
+        git clone https://github.com/Nemirtingas/android_hardware_marvell_media -b lineage-14.1 hardware/marvell/media
+        git clone https://github.com/Nemirtingas/android_hardware_marvell_keymaster -b lineage-14.1 hardware/marvell/keymaster
+        git clone https://github.com/Nemirtingas/android_hardware_marvell_gps -b lineage-14.1 hardware/marvell/gps
+        git clone https://github.com/Nemirtingas/android_vendor_cm_sepolicy_marvell -b lineage-14.1 vendor/cm/sepolicy/marvell
+        git clone https://github.com/Nemirtingas/android_vendor_samsung_grandprimevelte -b lineage-14.1 vendor/samsung/grandprimevelte
+        git clone https://github.com/Nemirtingas/android_kernel_samsung_grandprimevelte -b lineage-14.1 kernel/samsung/grandprimevelte
         source build/envsetup.sh
         lunch lineage_grandprimevelte-eng
         brunch lineage_grandprimevelte-eng
