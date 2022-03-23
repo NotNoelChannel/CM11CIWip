@@ -31,21 +31,12 @@ jobs:
           axel -q -n $(nproc --all) https://repo.huaweicloud.com/java/jdk/6u45-b06/jdk-6u45-linux-x64.bin
           chmod +x jdk-6u45-linux-x64.bin
           ./jdk-6u45-linux-x64.bin
-          sudo update-alternatives --install /usr/bin/javac javac  $PWD/jdk1.6.0_45/bin/javac 1
-          sudo update-alternatives --set javac $PWD/jdk1.6.0_45/bin/javac
-          sudo update-alternatives --install /usr/bin/java java  $PWD/jdk1.6.0_45/bin/java 1
-          sudo update-alternatives --set java $PWD/jdk1.6.0_45/bin/java
-          sudo update-alternatives --install /usr/bin/javaws javaws  $PWD/jdk1.6.0_45/bin/javaws 1
-          sudo update-alternatives --set javaws $PWD/jdk1.6.0_45/bin/javaws
-          sudo update-alternatives --install /usr/bin/javadoc javadoc  $PWD/jdk1.6.0_45/bin/javadoc 1
-          sudo update-alternatives --set javadoc $PWD/jdk1.6.0_45/bin/javadoc
-          sudo update-alternatives --install /usr/bin/javah javah  $PWD/jdk1.6.0_45/bin/javah 1
-          sudo update-alternatives --set javah $PWD/jdk1.6.0_45/bin/javah
-          sudo update-alternatives --install /usr/bin/javap javap  $PWD/jdk1.6.0_45/bin/javap 1
-          sudo update-alternatives --set javap $PWD/jdk1.6.0_45/bin/javap
-          sudo update-alternatives --install /usr/bin/jar jar  $PWD/jdk1.6.0_45/bin/jar 1
-          sudo update-alternatives --set jar $PWD/jdk1.6.0_45/bin/jar
-          
+          sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.6.0_45/bin/javac 1
+          sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.6.0_45/bin/java 1
+          sudo update-alternatives --install /usr/bin/javaws javaws /usr/lib/jvm/jdk1.6.0_45/bin/javaws 1
+          sudo update-alternatives --config javac *
+          sudo update-alternatives --config java *
+          sudo update-alternatives --config javaws * 
           cd ..
           cd ~/cm
           git clone https://github.com/CyanogenMod/android_device_samsung_i9100 -b jellybean device/samsung/i9100
