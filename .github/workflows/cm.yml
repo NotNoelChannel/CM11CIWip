@@ -23,11 +23,13 @@ jobs:
             zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 \
             libncurses5 lib32ncurses5-dev x11proto-core-dev libx11-dev \
             lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip \
-            fontconfig schedtool axel sudo openjdk-6-jre 
-            export JAVA_HOME=/usr/lib/jvm/openjdk-6-jdk
-            export PATH=$PATH:$JAVA_HOME/bin
+            fontconfig schedtool axel sudo 
       - name: Installing JDK 6 & Building CyanogenMod
         run: |
+          sudo add-apt-repository ppa:openjdk-r/ppa  
+          sudo apt-get update   
+          sudo apt-get install openjdk-6-jre 
+          cd ..
           cd ~/cm
           git clone https://github.com/CyanogenMod/android_device_samsung_i9100 -b jellybean device/samsung/i9100
           git clone https://github.com/CyanogenMod/android_device_samsung_galaxys2-common -b jellybean device/samsung/galaxys2-common
