@@ -51,6 +51,7 @@ jobs:
           git clone https://github.com/CyanogenMod/android_device_samsung_i9100 -b jellybean device/samsung/i9100
           git clone https://github.com/CyanogenMod/android_device_samsung_galaxys2-common -b jellybean device/samsung/galaxys2-common
           git clone https://github.com/CyanogenMod/android_kernel_samsung_smdk4210 -b jellybean kernel/samsung/smdk4210
+          git clone https://github.com/CyanogenMod/android_hardware_samsung.git -b jellybean hardware/samsung
           source build/envsetup.sh
           export ALLOW_MISSING_DEPENDENCIES=true
           export LC_ALL=C
