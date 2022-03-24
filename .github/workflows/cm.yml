@@ -14,7 +14,7 @@ jobs:
           mkdir ~/cm
           curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
           cd ~/cm
-          python3 ~/.bin/repo init --depth=1 -u https://github.com/CyanogenMod/android.git -b jellybean
+          python3 ~/.bin/repo init --depth=1 -u https://github.com/LineageOS/android.git -b lineage-16.0
           python3 ~/.bin/repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
       
       - name: Installing Build Dependencies
@@ -26,22 +26,17 @@ jobs:
             fontconfig schedtool axel sudo 
       - name: Installing JDK 6 & Building CyanogenMod
         run: |
-          sudo add-apt-repository ppa:openjdk-r/ppa  
-          sudo apt-get update   
-          sudo apt-get install openjdk-6-jre 
           cd ..
           cd ~/cm
-          git clone https://github.com/CyanogenMod/android_device_samsung_i9100 -b jellybean device/samsung/i9100
-          git clone https://github.com/CyanogenMod/android_device_samsung_galaxys2-common -b jellybean device/samsung/galaxys2-common
-          git clone https://github.com/CyanogenMod/android_kernel_samsung_smdk4210 -b jellybean kernel/samsung/smdk4210
-          git clone https://github.com/CyanogenMod/android_hardware_samsung.git -b jellybean hardware/samsung
           source build/envsetup.sh
+          breakfast jfltexx
           export ALLOW_MISSING_DEPENDENCIES=true
           export LC_ALL=C
-          lunch cm_i9100-eng
+          croot
+          brunch jfltexx
           mka
       - name: Uploading Builds
         uses: actions/upload-artifact@v2
         with:
           name: cm_build
-          path: /home/runner/cm/out/target/product/*/cm-*.zip
+          path: /home/runner/cm/out/target/product/*/lineage-*.zip
