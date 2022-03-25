@@ -14,7 +14,7 @@ jobs:
           mkdir ~/cm
           curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
           cd ~/cm
-          python3 ~/.bin/repo init --depth=1 -u https://github.com/LineageOS/android.git -b cm-14.1
+          python3 ~/.bin/repo init --depth=1 -u https://github.com/CyanogenMod/android.git -b cm-14.1
           python3 ~/.bin/repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
       
       - name: Installing Build Dependencies
@@ -48,14 +48,12 @@ jobs:
           
           cd ..
           cd ~/cm
-          git clone https://github.com/LineageOS/android_device_oneplus_bacon -b cm-14.1 device/oneplus/bacon
-          git clone https://github.com/LineageOS/android_kernel_oneplus_msm8974 -b cm-14.1 kernel/oneplus/msm8974
-          git clone https://github.com/LineageOS/android_device_oppo_msm8974-common -b cm-14.1 device/oppo/msm8974-common
-          git clone https://github.com/LineageOS/android_device_oppo_common -b cm-14.1 device/oppo/common
+          git clone https://github.com/CyanogenMod/android_device_lge_hammerhead -b cm-14.1 device/lge/hammerhead
+          git clone https://github.com/CyanogenMod/android_kernel_lge_hammerhead -b cm-14.1 kernel/lge/hammerhead
           source build/envsetup.sh
           export ALLOW_MISSING_DEPENDENCIES=true
           export LC_ALL=C
-          lunch lineage_bacon-eng
+          lunch cm_hammerhead-eng
           mka
       - name: Uploading Builds
         uses: actions/upload-artifact@v2
