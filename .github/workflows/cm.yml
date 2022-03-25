@@ -48,14 +48,14 @@ jobs:
           
           cd ..
           cd ~/cm
-          git clone https://github.com/CyanogenMod/android_device_oneplus_bacon -b cm-14.1 device/oneplus/bacon
+          git clone https://github.com/LineageOS/android_device_oneplus_bacon -b cm-14.1 device/oneplus/bacon
           git clone https://github.com/LineageOS/android_kernel_oneplus_msm8974 -b cm-14.1 kernel/oneplus/msm8974
           git clone https://github.com/LineageOS/android_device_oppo_msm8974-common -b cm-14.1 device/oppo/msm8974-common
           git clone https://github.com/LineageOS/android_device_oppo_common -b cm-14.1 device/oppo/common
           source build/envsetup.sh
           export ALLOW_MISSING_DEPENDENCIES=true
           export LC_ALL=C
-          lunch cm_bacon-eng
+          lunch lineage_bacon-eng
           mka
       - name: Uploading Builds
         uses: actions/upload-artifact@v2
