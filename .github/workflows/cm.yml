@@ -14,7 +14,7 @@ jobs:
           mkdir ~/cm
           curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
           cd ~/cm
-          python3 ~/.bin/repo init --depth=1 -u https://github.com/CyanogenMod/android.git -b cm-14.1
+          python3 ~/.bin/repo init --depth=1 -u https://github.com/CyanogenMod/android.git -b cm-12.0
           python3 ~/.bin/repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
       
       - name: Installing Build Dependencies
@@ -48,8 +48,8 @@ jobs:
           
           cd ..
           cd ~/cm
-          git clone https://github.com/CyanogenMod/android_device_lge_hammerhead -b cm-14.1 device/lge/hammerhead
-          git clone https://github.com/CyanogenMod/android_kernel_lge_hammerhead -b cm-14.1 kernel/lge/hammerhead
+          git clone https://github.com/CyanogenMod/android_device_lge_hammerhead -b cm-12.0 device/lge/hammerhead
+          git clone https://github.com/CyanogenMod/android_kernel_lge_hammerhead -b cm-12.0 kernel/lge/hammerhead
           source build/envsetup.sh
           export ALLOW_MISSING_DEPENDENCIES=true
           export LC_ALL=C
