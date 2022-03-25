@@ -14,7 +14,7 @@ jobs:
           mkdir ~/cm
           curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
           cd ~/cm
-          python3 ~/.bin/repo init --depth=1 -u https://github.com/CyanogenMod/android.git -b cm-14.1
+          python3 ~/.bin/repo init --depth=1 -u https://github.com/LineageOS/android.git -b cm-14.1
           python3 ~/.bin/repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
       
       - name: Installing Build Dependencies
