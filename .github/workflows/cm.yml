@@ -14,7 +14,7 @@ jobs:
           mkdir ~/cm
           curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
           cd ~/cm
-          python3 ~/.bin/repo init --depth=1 -u https://github.com/LineageOS/android.git -b cm-13.0
+          python3 ~/.bin/repo init --depth=1 -u https://github.com/LineageOS/android.git -b cm-11.0
           python3 ~/.bin/repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
       
       - name: Installing Build Dependencies
@@ -31,25 +31,25 @@ jobs:
           axel -q -n $(nproc --all) https://repo.huaweicloud.com/java/jdk/6u45-b06/jdk-6u45-linux-x64.bin
           chmod +x jdk-6u45-linux-x64.bin
           ./jdk-6u45-linux-x64.bin
-          sudo update-alternatives --install /usr/bin/javac javac  $PWD/jdk1.6.0_45/bin/javac 1
+          sudo update-alternatives --install /usr/bin/javac javac  $PWD/jdk1.6.0_45/bin/javac 2
           sudo update-alternatives --set javac $PWD/jdk1.6.0_45/bin/javac
-          sudo update-alternatives --install /usr/bin/java java  $PWD/jdk1.6.0_45/bin/java 1
+          sudo update-alternatives --install /usr/bin/java java  $PWD/jdk1.6.0_45/bin/java 2
           sudo update-alternatives --set java $PWD/jdk1.6.0_45/bin/java
-          sudo update-alternatives --install /usr/bin/javaws javaws  $PWD/jdk1.6.0_45/bin/javaws 1
+          sudo update-alternatives --install /usr/bin/javaws javaws  $PWD/jdk1.6.0_45/bin/javaws 2
           sudo update-alternatives --set javaws $PWD/jdk1.6.0_45/bin/javaws
-          sudo update-alternatives --install /usr/bin/javadoc javadoc  $PWD/jdk1.6.0_45/bin/javadoc 1
+          sudo update-alternatives --install /usr/bin/javadoc javadoc  $PWD/jdk1.6.0_45/bin/javadoc 2
           sudo update-alternatives --set javadoc $PWD/jdk1.6.0_45/bin/javadoc
-          sudo update-alternatives --install /usr/bin/javah javah  $PWD/jdk1.6.0_45/bin/javah 1
+          sudo update-alternatives --install /usr/bin/javah javah  $PWD/jdk1.6.0_45/bin/javah 2
           sudo update-alternatives --set javah $PWD/jdk1.6.0_45/bin/javah
-          sudo update-alternatives --install /usr/bin/javap javap  $PWD/jdk1.6.0_45/bin/javap 1
+          sudo update-alternatives --install /usr/bin/javap javap  $PWD/jdk1.6.0_45/bin/javap 2
           sudo update-alternatives --set javap $PWD/jdk1.6.0_45/bin/javap
-          sudo update-alternatives --install /usr/bin/jar jar  $PWD/jdk1.6.0_45/bin/jar 1
+          sudo update-alternatives --install /usr/bin/jar jar  $PWD/jdk1.6.0_45/bin/jar 2
           sudo update-alternatives --set jar $PWD/jdk1.6.0_45/bin/jar
           
           cd ..
           cd ~/cm
-          git clone https://github.com/LineageOS/android_device_lge_hammerhead -b cm-13.0 device/lge/hammerhead
-          git clone https://github.com/LineageOS/android_kernel_lge_hammerhead -b cm-13.0 kernel/lge/hammerhead
+          git clone https://github.com/LineageOS/android_device_lge_hammerhead -b cm-11.0 device/lge/hammerhead
+          git clone https://github.com/LineageOS/android_kernel_lge_hammerhead -b cm-11.0 kernel/lge/hammerhead
           source build/envsetup.sh
           export ALLOW_MISSING_DEPENDENCIES=true
           export LC_ALL=C
