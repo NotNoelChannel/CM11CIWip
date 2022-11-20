@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Cleaning up some space
@@ -21,11 +21,11 @@ jobs:
           python3 ~/.bin/repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
       - name: Installing Build Dependencies
         run: |
-          sudo apt-get install git-core gnupg flex bison build-essential \
-            zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 \
-            libncurses5 lib32ncurses5-dev x11proto-core-dev libx11-dev \
-            lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip \
-            fontconfig schedtool axel
+          sudo apt-get install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev libelf-dev liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproczip zlib1g-dev
+      - name: Set Swap Space
+        uses: pierotofy/set-swap-space@master
+        with:
+          swap-size-gb: 12
       - name: Installing JDK 6 & Building CyanogenMod
         run: |
           mkdir ~/.jdk_6
